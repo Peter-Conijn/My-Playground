@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"name": ".github",
+			"path": ".github"
+		},
+		{
+			"name": "FileHandling",
+			"path": "FileHandling"
+		},
+		{
+			"name": "Inheritance",
+			"path": "Inheritance"
+		},
+		{
+			"name": "InterfacePricing",
+			"path": "InterfacePricing"
+		}
+	],
+	"settings": {}
+}

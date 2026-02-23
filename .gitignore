@@ -1,0 +1,18 @@
+# AL Package folders
+**/.alpackages/
+.alpackages/
+
+# VS Code settings
+**/.vscode/
+.vscode/
+
+# AL Test Runner
+**/.altestrunner/
+.altestrunner/
+
+# Snapshots
+**/.snapshots/
+.snapshots/
+
+# Compiled app packages
+*.app
