@@ -178,7 +178,7 @@ page 50180 "Parsed Items List"
                 action(ShowParallelTiming)
                 {
                     Caption = 'Show Parallel Timing';
-                    Image = Clock;
+                    Image = Timeline;
                     ApplicationArea = All;
                     ToolTip = 'Show the wall-clock elapsed time of the last parallel parse, measured from session launch to the last recorded insert. Call this after all background sessions have finished.';
 
