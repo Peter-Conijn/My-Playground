@@ -13,6 +13,6 @@ tableextension 50150 "Sales Header" extends "Sales Header"
     var
         MyUserSetup: Codeunit "My User Setup";
     begin
-        "User Phone No." := MyUserSetup.GetValue()."Phone No.";
+        "User Phone No." := MyUserSetup.GetUserSetup()."Phone No.";
     end;
 }
