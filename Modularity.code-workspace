@@ -19,6 +19,10 @@
 		{
 			"name": "InterfacePricing",
 			"path": "InterfacePricing"
+		},
+		{
+			"name": "Session",
+			"path": "Session"
 		}
 	],
 	"settings": {}
