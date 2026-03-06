@@ -10,7 +10,14 @@
   "help": "",
   "url": "",
   "logo": "",
-  "dependencies": [],
+  "dependencies": [
+    {
+      "id": "781203f8-1ade-47fe-8d41-9c5319586d30",
+      "name": "DYSEL",
+      "publisher": "Dysel",
+      "version": "27.0.0.0"
+    }
+  ],
   "screenshots": [],
   "platform": "1.0.0.0",
   "application": "27.0.0.0",

@@ -12,6 +12,7 @@ codeunit 50150 "My User Setup"
 
     var
         TempUserSetup: Record "User Setup" temporary;
+        TempUserSetupPerBranchW1ELC: Record "User Setup Per Branch W1 ELC" temporary;
         Initialized: Boolean;
 
     /// <summary>
@@ -22,9 +23,10 @@ codeunit 50150 "My User Setup"
         UserSetup: Record "User Setup";
     begin
         UserSetup.ReadIsolation := IsolationLevel::ReadUncommitted;
-        if UserSetup.Get(UserId()) then
-            this.TempUserSetup := UserSetup
-        else
+        if UserSetup.Get(UserId()) then begin
+            ImplementUserSetup(UserSetup);
+            ImplementUserSetupPerBranch();
+        end else
             this.Clear();
 
         this.Initialized := true;
@@ -55,6 +57,40 @@ codeunit 50150 "My User Setup"
     begin
         this.Refresh();
         exit(this.TempUserSetup);
+    end;
+
+    /// <summary>
+    /// Retrieves the current user's settings for a specific branch from the "User Setup Per Branch W1 ELC" table. This method allows for filtering the user setup based on the provided branch code, enabling users to have different settings for different branches if necessary. It returns a temporary record containing the user settings specific to the given branch, providing flexibility in managing user configurations across multiple branches within the application.
+    /// </summary>
+    /// <param name="BranchCode">The code of the branch for which to retrieve the user settings.</param>
+    /// <returns>A temporary record containing the user settings for the specified branch.</returns>
+    procedure GetUserSetupForBranch(BranchCode: Code[20]): Record "User Setup Per Branch W1 ELC" temporary
+    var
+        TempUserSetupPerBranchCopyW1ELC: Record "User Setup Per Branch W1 ELC" temporary;
+    begin
+        this.Refresh();
+        if TempUserSetupPerBranchW1ELC.Get(UserId(), BranchCode) then
+            TempUserSetupPerBranchCopyW1ELC := TempUserSetupPerBranchW1ELC;
+
+        exit(TempUserSetupPerBranchCopyW1ELC);
+    end;
+
+    local procedure ImplementUserSetup(var UserSetup: Record "User Setup")
+    begin
+        this.TempUserSetup := UserSetup;
+    end;
+
+    local procedure ImplementUserSetupPerBranch()
+    var
+        UserSetupPerBranchW1ELC: Record "User Setup Per Branch W1 ELC";
+    begin
+        UserSetupPerBranchW1ELC.ReadIsolation := IsolationLevel::ReadUncommitted;
+        UserSetupPerBranchW1ELC.SetRange("User ID", this.TempUserSetup."User ID");
+        if UserSetupPerBranchW1ELC.FindSet() then
+            repeat
+                this.TempUserSetupPerBranchW1ELC := UserSetupPerBranchW1ELC;
+                this.TempUserSetupPerBranchW1ELC.Insert();
+            until UserSetupPerBranchW1ELC.Next() = 0;
     end;
 
     /// <summary>

@@ -14,5 +14,6 @@ tableextension 50150 "Sales Header" extends "Sales Header"
         MyUserSetup: Codeunit "My User Setup";
     begin
         "User Phone No." := MyUserSetup.GetUserSetup()."Phone No.";
+        "Branch W1 ELC" := MyUserSetup.GetUserSetup()."Branch W1 ELC";
     end;
 }
