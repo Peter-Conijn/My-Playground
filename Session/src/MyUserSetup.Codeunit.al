@@ -37,7 +37,7 @@ codeunit 50150 "My User Setup"
     /// </summary>
     procedure Refresh()
     begin
-        if not Initialized then
+        if not this.Initialized then
             this.Initialize();
     end;
 
@@ -69,8 +69,8 @@ codeunit 50150 "My User Setup"
         TempUserSetupPerBranchCopyW1ELC: Record "User Setup Per Branch W1 ELC" temporary;
     begin
         this.Refresh();
-        if TempUserSetupPerBranchW1ELC.Get(UserId(), BranchCode) then
-            TempUserSetupPerBranchCopyW1ELC := TempUserSetupPerBranchW1ELC;
+        if this.TempUserSetupPerBranchW1ELC.Get(UserId(), BranchCode) then
+            TempUserSetupPerBranchCopyW1ELC := this.TempUserSetupPerBranchW1ELC;
 
         exit(TempUserSetupPerBranchCopyW1ELC);
     end;
