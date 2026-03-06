@@ -24,8 +24,8 @@ codeunit 50150 "My User Setup"
     begin
         UserSetup.ReadIsolation := IsolationLevel::ReadUncommitted;
         if UserSetup.Get(UserId()) then begin
-            ImplementUserSetup(UserSetup);
-            ImplementUserSetupPerBranch();
+            this.ImplementUserSetup(UserSetup);
+            this.ImplementUserSetupPerBranch();
         end else
             this.Clear();
 
